@@ -36,6 +36,29 @@ public class CurrencyConverter extends HttpServlet {
     private String targetCurrency;
     private double targetCurrencyAmount;
 
+    public CurrencyConverter(String sourceCurrency, double sourceCurrencyAmount, String targetCurrency) {
+        // the source and target currency will come in the form of "AUD-Australia"...
+        this.sourceCurrency = sourceCurrency.split("-")[0];
+        this.sourceCurrencyAmount = sourceCurrencyAmount;
+        this.targetCurrency = targetCurrency.split("-")[0];
+    }
+
+    public void convert() {
+        int idx = -1;
+        String userExchangeRate = sourceCurrency + "-" + targetCurrency;
+        for (int i = 0; i < EXCHANGE_RATEs_STR.length; i++) {
+            if (EXCHANGE_RATEs_STR[i].equalsIgnoreCase(userExchangeRate)) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx == -1) {
+            System.out.printf("CAN NOT FIND exchange Rate: From %s to %s\n", sourceCurrency, targetCurrency);
+            return;
+        }
+        targetCurrencyAmount = sourceCurrencyAmount * EXCHANGE_RATEs[idx];
+    }
+
     public void init() {
     }
 
@@ -57,5 +80,24 @@ public class CurrencyConverter extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write(currencysString);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+        double amount = Double.parseDouble(req.getParameter("amount"));
+        String srcCurrency = req.getParameter("srcCurrency");
+        String targetCurrency = req.getParameter("targetCurrency");
+
+        this.sourceCurrencyAmount = amount;
+        this.sourceCurrency = srcCurrency;
+        this.targetCurrency = targetCurrency;
+        convert();
+
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+
+        String jsonReponse = String.format("{ targetAmount : %.4f}", targetCurrencyAmount);
+        resp.getWriter().write(jsonReponse);
     }
 }
