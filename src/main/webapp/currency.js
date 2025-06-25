@@ -1,12 +1,17 @@
 function loadCurrencyOptions() {
+
+    // create XMLHttpRequest Object
     const xhttp = new XMLHttpRequest();
 
+    // execute when the response is ready
     xhttp.onload = function() {
         if(xhttp.status === 200) {
-            const data = JSON.parse(this.responseText);
+            // parse json to get the list of currencies
+            const data = JSON.parse(xhttp.responseText);
             const select = document.getElementById("srcCurrency");
             select.innerHTML = "";
 
+            // add options to "select"
             data.forEach(function(currencyCode) {
                 const option = document.createElement("option")
                 option.value = currencyCode;
@@ -14,8 +19,12 @@ function loadCurrencyOptions() {
                 select.appendChild(option);
             })
         }
-    };
 
-    xhttp.open("GET", "currency_converter?type=list", true)
+    }
+
+    // send request
+    xhttp.open("GET", "currency-converter?type=list", true);
     xhttp.send();
 }
+
+window.onload = loadCurrencyOptions;
