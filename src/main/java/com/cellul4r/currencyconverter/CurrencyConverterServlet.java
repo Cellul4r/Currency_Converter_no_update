@@ -22,7 +22,8 @@ public class CurrencyConverterServlet extends HttpServlet {
         if("list".equals(type)) {
 
             // format currency string array to json
-            String[] currencyList = Arrays.copyOf(this.currencyList, this.currencyList.length);
+            String[] oldCurrencyList = CurrencyConverter.currencyList;
+            String[] currencyList = Arrays.copyOf(oldCurrencyList, oldCurrencyList.length);
             for(int i = 0; i < currencyList.length; i++) {
                 currencyList[i] = String.format("\"%s\"", currencyList[i]);
             }
