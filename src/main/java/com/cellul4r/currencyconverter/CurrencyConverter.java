@@ -36,6 +36,16 @@ public class CurrencyConverter extends HttpServlet {
     private String targetCurrency;
     private double targetCurrencyAmount;
 
+    private void convert() {
+        String exchange = sourceCurrency + "-" + targetCurrency;
+        for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
+            if(exchange.equalsIgnoreCase(currencyList[i])) {
+                targetCurrencyAmount = EXCHANGE_RATEs[i] * sourceCurrencyAmount;
+                return;
+            }
+        }
+    }
+
     public void init() {
     }
 
@@ -57,5 +67,10 @@ public class CurrencyConverter extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write(currencysString);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
