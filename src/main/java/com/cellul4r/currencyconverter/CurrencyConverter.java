@@ -30,17 +30,17 @@ public class CurrencyConverter {
         this.srcCurrency = srcCurrency;
         this.srcCurrencyAmount = srcCurrencyAmount;
         this.targetCurrency = targetCurrency;
-        this.targetCurrencyAmount = convert();
+        convert();
     }
 
-    private double convert() {
+    public void convert() {
         String exchange = srcCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
             if(exchange.equalsIgnoreCase(currencyList[i])) {
-                return targetCurrencyAmount = EXCHANGE_RATEs[i] * srcCurrencyAmount;
+                System.out.println("Found!");
+                targetCurrencyAmount = EXCHANGE_RATEs[i] * srcCurrencyAmount;
             }
         }
-        return 0.0;
     }
 
     public String getSrcCurrency() {
