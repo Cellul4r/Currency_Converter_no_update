@@ -18,7 +18,7 @@ public class CurrencyConverter {
             0.047, 0.213, 0.027, 4.36, 0.039, 1.00, 749.56,
             0.000062, 0.00028, 0.000036, 0.0058, 0.000052, 0.0013, 1.00};
 
-    private final String[] currencyList = {"AUD-Australian Dollar", "CNY-ChineseYen", "EUR-Euro", "JPY-Japanese Yen",
+    public static final String[] currencyList = {"AUD-Australian Dollar", "CNY-ChineseYen", "EUR-Euro", "JPY-Japanese Yen",
             "SGD-Singapore Dollar", "THB-Thai Baht", "VND-Vietnamese Dong"};
 
     private String sourceCurrency;
