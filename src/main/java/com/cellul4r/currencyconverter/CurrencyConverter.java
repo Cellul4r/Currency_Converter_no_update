@@ -21,34 +21,34 @@ public class CurrencyConverter {
     public static final String[] currencyList = {"AUD-Australian Dollar", "CNY-ChineseYen", "EUR-Euro", "JPY-Japanese Yen",
             "SGD-Singapore Dollar", "THB-Thai Baht", "VND-Vietnamese Dong"};
 
-    private String sourceCurrency;
-    private double sourceCurrencyAmount;
+    private String srcCurrency;
+    private double srcCurrencyAmount;
     private String targetCurrency;
     private double targetCurrencyAmount;
 
-    public CurrencyConverter(String sourceCurrency, double sourceCurrencyAmount, String targetCurrency) {
-        this.sourceCurrency = sourceCurrency;
-        this.sourceCurrencyAmount = sourceCurrencyAmount;
+    public CurrencyConverter(String srcCurrency, double srcCurrencyAmount, String targetCurrency) {
+        this.srcCurrency = srcCurrency;
+        this.srcCurrencyAmount = srcCurrencyAmount;
         this.targetCurrency = targetCurrency;
         this.targetCurrencyAmount = convert();
     }
 
     private double convert() {
-        String exchange = sourceCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
+        String exchange = srcCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
             if(exchange.equalsIgnoreCase(currencyList[i])) {
-                return targetCurrencyAmount = EXCHANGE_RATEs[i] * sourceCurrencyAmount;
+                return targetCurrencyAmount = EXCHANGE_RATEs[i] * srcCurrencyAmount;
             }
         }
         return 0.0;
     }
 
-    public String getSourceCurrency() {
-        return sourceCurrency;
+    public String getSrcCurrency() {
+        return srcCurrency;
     }
 
-    public double getSourceCurrencyAmount() {
-        return sourceCurrencyAmount;
+    public double getSrcCurrencyAmount() {
+        return srcCurrencyAmount;
     }
 
     public String getTargetCurrency() {
