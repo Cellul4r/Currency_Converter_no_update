@@ -26,13 +26,21 @@ public class CurrencyConverter {
     private String targetCurrency;
     private double targetCurrencyAmount;
 
-    private void convert() {
+    public CurrencyConverter(String sourceCurrency, double sourceCurrencyAmount, String targetCurrency) {
+        this.sourceCurrency = sourceCurrency.split("-")[0];
+        this.sourceCurrencyAmount = sourceCurrencyAmount;
+        this.targetCurrency = targetCurrency.split("-")[0];
+        this.targetCurrencyAmount = convert();
+    }
+
+    private double convert() {
         String exchange = sourceCurrency + "-" + targetCurrency;
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
             if(exchange.equalsIgnoreCase(currencyList[i])) {
-                targetCurrencyAmount = EXCHANGE_RATEs[i] * sourceCurrencyAmount;
-                return;
+                return targetCurrencyAmount = EXCHANGE_RATEs[i] * sourceCurrencyAmount;
             }
         }
+        return 0.0;
     }
+
 }
