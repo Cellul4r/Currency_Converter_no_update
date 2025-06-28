@@ -35,7 +35,7 @@ function submitForm(formId) {
         e.preventDefault();
 
         const data = {
-            srcCurrencyAmo: parseFloat(document.getElementById("srcCurrencyAmount").value),
+            srcCurrencyAmount: parseFloat(document.getElementById("srcCurrencyAmount").value),
             srcCurrency: document.getElementById("srcCurrency").value,
             targetCurrency: document.getElementById("targetCurrency").value
         };
