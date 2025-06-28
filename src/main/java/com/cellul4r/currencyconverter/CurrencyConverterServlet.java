@@ -51,7 +51,6 @@ public class CurrencyConverterServlet extends HttpServlet {
         resp.setContentType("application/json");
 
         String json = gson.toJson(currencyConverter);
-        System.out.println(json);
         resp.getWriter().write(json);
     }
 }
