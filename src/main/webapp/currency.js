@@ -52,7 +52,6 @@ function submitForm(formId) {
             })
             .catch(err => console.error("Error: ", err));
     })
-    console.log("HI");
 }
 
 loadCurrencyOptions("srcCurrency");
