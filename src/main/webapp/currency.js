@@ -46,9 +46,10 @@ function submitForm(formId) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then(res => res.text())
+        }).then(res => res.json())
             .then(result => {
-                document.getElementById("result").textContent = result;
+                document.getElementById("result").textContent =
+                `${result.srcCurrencyAmount} ${result.srcCurrency} = ${result.targetCurrencyAmount.toFixed(7)} ${result.targetCurrency}`;
             })
             .catch(err => console.error("Error: ", err));
     })
