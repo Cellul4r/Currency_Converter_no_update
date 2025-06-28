@@ -30,7 +30,6 @@ public class CurrencyConverter {
         String exchange = srcCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
             if(exchange.equalsIgnoreCase(EXCHANGE_RATEs_STR[i])) {
-                System.out.println("Found!");
                 targetCurrencyAmount = EXCHANGE_RATEs[i] * srcCurrencyAmount;
             }
         }
