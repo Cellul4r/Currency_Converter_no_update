@@ -27,14 +27,14 @@ public class CurrencyConverter {
     private double targetCurrencyAmount;
 
     public CurrencyConverter(String sourceCurrency, double sourceCurrencyAmount, String targetCurrency) {
-        this.sourceCurrency = sourceCurrency.split("-")[0];
+        this.sourceCurrency = sourceCurrency;
         this.sourceCurrencyAmount = sourceCurrencyAmount;
-        this.targetCurrency = targetCurrency.split("-")[0];
+        this.targetCurrency = targetCurrency;
         this.targetCurrencyAmount = convert();
     }
 
     private double convert() {
-        String exchange = sourceCurrency + "-" + targetCurrency;
+        String exchange = sourceCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {
             if(exchange.equalsIgnoreCase(currencyList[i])) {
                 return targetCurrencyAmount = EXCHANGE_RATEs[i] * sourceCurrencyAmount;
@@ -43,4 +43,19 @@ public class CurrencyConverter {
         return 0.0;
     }
 
+    public String getSourceCurrency() {
+        return sourceCurrency;
+    }
+
+    public double getSourceCurrencyAmount() {
+        return sourceCurrencyAmount;
+    }
+
+    public String getTargetCurrency() {
+        return targetCurrency;
+    }
+
+    public double getTargetCurrencyAmount() {
+        return targetCurrencyAmount;
+    }
 }
