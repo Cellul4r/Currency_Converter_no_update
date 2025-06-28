@@ -5,7 +5,6 @@
     <title>Currency Converter</title>
 </head>
 <body>
-<div>
     <h1>Currency Converter</h1>
     <form id="convertCurrency">
         <label for="srcCurrency">From</label>
@@ -16,9 +15,10 @@
         <select id="targetCurrency" name="targetCurrency">
             <option>Loading...</option>
         </select><br>
-        <script src="currency.js"></script>
         <button type="submit">Convert</button>
     </form>
-</div>
+
+    <div id="result"></div>
+    <script src="currency.js"></script>
 </body>
 </html>
