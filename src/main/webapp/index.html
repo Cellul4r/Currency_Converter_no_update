@@ -7,16 +7,17 @@
 <body>
 <div>
     <h1>Currency Converter</h1>
-    <form action="/currency_converter" method="post">
+    <form id="convertCurrency">
         <label for="srcCurrency">From</label>
         <select id="srcCurrency" name="srcCurrencyAmount">
             <option>Loading...</option>
-        </select>
+        </select><br>
         <label for="targetCurrency">To</label>
         <select id="targetCurrency" name="targetCurrency">
             <option>Loading...</option>
-        </select>
+        </select><br>
         <script src="currency.js"></script>
+        <button type="submit">Convert</button>
     </form>
 </div>
 </body>
