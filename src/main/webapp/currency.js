@@ -28,7 +28,33 @@ function loadCurrencyOptions(id) {
     xhttp.send();
 }
 
-window.onload = function() {
-    loadCurrencyOptions("srcCurrency");
-    loadCurrencyOptions("targetCurrency");
-};
+function submitForm(formId) {
+    const form = document.getElementById(formId);
+    form.addEventListener("submit", function(e) {
+        // prevent reloading page
+        e.preventDefault();
+
+        const data = {
+            amount: parseFloat(document.getElementById("amount").value),
+            srcCurrency: document.getElementById("srcCurrency").value,
+            targetCurrency: document.getElementById("targetCurrency").value
+        };
+
+        fetch("currency-converter",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.text())
+            .then(result => {
+                document.getElementById("result").textContent = result;
+            })
+            .catch(err => console.error("Error: ", err));
+    })
+    console.log("HI");
+}
+
+loadCurrencyOptions("srcCurrency");
+loadCurrencyOptions("targetCurrency");
+submitForm("convertCurrency");
