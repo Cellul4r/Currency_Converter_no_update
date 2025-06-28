@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 @WebServlet(name = "currencyConverter", value = "/currency-converter")
-public class CurrencyConverter extends HttpServlet {
+public class CurrencyConverterServlet extends HttpServlet {
 
     private static final String[] EXCHANGE_RATEs_STR = {"AUD-AUD", "AUD-CNY", "AUD-EUR", "AUD-JPY", "AUD-SGD", "AUD-THB", "AUD-VND",
             "CNY-AUD", "CNY-CNY", "CNY-EUR", "CNY-JPY", "CNY-SGD", "CNY-THB", "CNY-VND",
