@@ -35,3 +35,8 @@ button:hover {
     background-color: lightgrey;
 }
 
+#result {
+    margin: 0 auto;
+    font-size: 1.4rem;
+}
+
