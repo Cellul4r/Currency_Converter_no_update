@@ -26,6 +26,7 @@ public class CurrencyConverter {
     private String targetCurrency;
     private double targetCurrencyAmount;
 
+    // method to convert the source currency to target currency with specific exchange rate
     public void convert() {
         String exchange = srcCurrency.split("-")[0] + "-" + targetCurrency.split("-")[0];
         for(int i = 0; i < EXCHANGE_RATEs.length; i++) {

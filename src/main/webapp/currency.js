@@ -12,7 +12,9 @@ function loadCurrencyOptions(id) {
 
             // add options to "select"
             data.forEach(function(currencyCode) {
+                // append more option in the select field
                 const option = document.createElement("option");
+                // set value of each options
                 option.value = currencyCode;
                 option.textContent = currencyCode;
                 select.appendChild(option);
@@ -23,13 +25,14 @@ function loadCurrencyOptions(id) {
 
     }
 
-    // send request
+    // send request with GET method to get currency list with json formatted
     xhttp.open("GET", "currency-converter?type=list", true);
     xhttp.send();
 }
 
 function submitForm(formId) {
     const form = document.getElementById(formId);
+    // send request when this form was submitted
     form.addEventListener("submit", function(e) {
         // prevent reloading page
         e.preventDefault();
@@ -40,6 +43,8 @@ function submitForm(formId) {
             targetCurrency: document.getElementById("targetCurrency").value
         };
 
+        // send request with POST method to CurrencyConvertServlet.java
+        // and get response back about currency converting result with json formatted
         fetch("currency-converter",{
             method: "POST",
             headers: {
@@ -49,7 +54,8 @@ function submitForm(formId) {
         }).then(res => res.json())
             .then(result => {
                 document.getElementById("result").textContent =
-                `${result.srcCurrencyAmount} ${result.srcCurrency} = ${result.targetCurrencyAmount.toFixed(7)} ${result.targetCurrency}`;
+                `${result.srcCurrencyAmount} ${result.srcCurrency} = 
+                ${result.targetCurrencyAmount.toFixed(7)} ${result.targetCurrency}`;
             })
             .catch(err => console.error("Error: ", err));
     })

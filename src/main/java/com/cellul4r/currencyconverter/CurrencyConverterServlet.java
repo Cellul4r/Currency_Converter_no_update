@@ -14,6 +14,7 @@ import java.util.Arrays;
 @WebServlet(name = "currencyConverter", value = "/currency-converter")
 public class CurrencyConverterServlet extends HttpServlet {
 
+    // variable gson to convert json to java object
     private final Gson gson = new Gson();
 
     public void init() {
@@ -33,7 +34,7 @@ public class CurrencyConverterServlet extends HttpServlet {
             }
             String currencysString = Arrays.toString(currencyList);
 
-            // set up response to send back
+            // set up response to send back with json formatted
             resp.setCharacterEncoding("UTF-8");
             resp.setContentType("application/json");
             resp.getWriter().write(currencysString);
@@ -44,12 +45,15 @@ public class CurrencyConverterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
 
+        // parse json to object
         CurrencyConverter currencyConverter = gson.fromJson(reader, CurrencyConverter.class);
+        // calculate target currency value
         currencyConverter.convert();
 
+        // setup and send response back with json formatted
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-
+        // parse back from object to json using Gson
         String json = gson.toJson(currencyConverter);
         resp.getWriter().write(json);
     }
